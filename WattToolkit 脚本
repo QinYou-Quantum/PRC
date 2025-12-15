@@ -6,28 +6,28 @@
 // @author       Qin_You秦晓尤
 // @match        *
 // @enable      true
-// @grant        GM_xmlhttpRequest
-// @grant        GM_addStyle
-// @grant        GM_getValue
-// @grant        GM_setValue
-// @grant        GM_log
+// @grant        Qin_xmlhttpRequest
+// @grant        Qin_addStyle
+// @grant        Qin_getValue
+// @grant        Qin_setValue
+// @grant        Qin_log
 // ==/UserScript==
 
 var unsafeWindow = this;
 
-function GM_registerMenuCommand() {
+function Qin_registerMenuCommand() {
 
 }
-function GM_unregisterMenuCommand() {
+function Qin_unregisterMenuCommand() {
 
 }
-function GM_openInTab() {
+function Qin_openInTab() {
 
 }
-function GM_notification() {
+function Qin_notification() {
 
 }
-function GM_setClipboard(val) {
+function Qin_setClipboard(val) {
     if (navigator?.clipboard) {
         navigator.clipboard.writeText(val);
     } else {
@@ -40,7 +40,7 @@ function GM_setClipboard(val) {
     }
 }
 
-function GM_xmlhttpRequest(option) {
+function Qin_xmlhttpRequest(option) {
     if (String(option) !== '[object Object]') return undefined
     option.method = option.method ? option.method.toUpperCase() : 'GET'
     option.data = option.data || {}
@@ -101,7 +101,7 @@ function HeaderQuery(key) {
             return false;
     }
 }
-function GM_addStyle(css) {
+function Qin_addStyle(css) {
     try {
         let style = document.createElement('style');
         style.textContent = css;
@@ -111,7 +111,7 @@ function GM_addStyle(css) {
     }
 }
 
-function GM_getValue(name, defaultValue) {
+function Qin_getValue(name, defaultValue) {
     let value = window.localStorage.getItem(name)
     if (!value) {
         return defaultValue;
@@ -127,7 +127,7 @@ function GM_getValue(name, defaultValue) {
             try {
                 return JSON.parse(value);
             } catch (e) {
-                console.log("Error: env: GM_getValue " + e);
+                console.log("Error: env: Qin_getValue " + e);
                 return defaultValue;
             }
         default:
@@ -135,14 +135,14 @@ function GM_getValue(name, defaultValue) {
     }
 }
 
-function GM_setValue(name, value) {
+function Qin_setValue(name, value) {
     let type = (typeof value)[0];
     switch (type) {
         case 'o':
             try {
                 value = type + JSON.stringify(value);
             } catch (e) {
-                console.log("Error: env: GM_setValue typeof ?Object" + e);
+                console.log("Error: env: Qin_setValue typeof ?Object" + e);
                 return;
             }
             break;
@@ -153,11 +153,11 @@ function GM_setValue(name, value) {
         if (typeof name !== 'string') JSON.stringify(name)
         localStorage.setItem(name, value);
     } catch (e) {
-        console.log("Error: env: GM_setValue saveing" + e);
+        console.log("Error: env: Qin_setValue saveing" + e);
     }
 }
 
-function GM_log(message) {
+function Qin_log(message) {
     if (window.console) {
         window.console.log(message);
     } else {
@@ -165,7 +165,7 @@ function GM_log(message) {
     }
 }
 
-function GM_listValues() {
+function Qin_listValues() {
     var names = [];
     for (var i = 0, len = localStorage.length; i < len; i++) {
         names.push(localStorage.key(i));
@@ -186,4 +186,3 @@ function onlySteam() {
     }
 }
 onlySteam();
-
