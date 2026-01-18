@@ -390,13 +390,13 @@
             </div>
         </div>
 
-        <h1 class="logo">Search Engine</h1>
+        <h1 class="logo">Liquid Search Engine</h1>
 
         <div class="content-container">
             <div class="search-container" id="search-container">
                 <div class="search-wrapper">
                     <div class="search-box">
-                        <input type="text" class="search-input" placeholder="Search the web...">
+                        <input type="text" class="search-input" placeholder="Search the web with Bing...">
                         <button class="search-button">Search</button>
                     </div>
                 </div>
@@ -408,10 +408,9 @@
             </div>
 
             <div class="manual-container" id="manual-container">
-                <h2 style="margin-bottom: 1rem; color: var(--primary);">User Manual</h2>
+                <h2 style="margin-bottom: 1rem; color: var(--primary);">Author's message</h2>
                 <div class="manual-content">添加了一个真正意义上的快捷方式,不过以后你们刷视频的时候还是得小心点要不然一抓到了掉的是我qwq(快给我买杯卡布奇诺!!!)
-                    对了，还有请不要盗用我的源代码,虽然我将我的项目发布在Github上但我并不想知道突然冒出来跟谁帮着我的代码然后说是自己发布的东西,甚至连署名都没改干净,如果你需要借用我的代码请保留我的原属名和原作者的版权标志,同时谢谢各位的支持!
-                </div>
+                    对了，还有请不要盗用我的源代码,虽然我将我的项目发布在Github上但我并不想知道突然冒出来跟谁帮着我的代码然后说是自己发布的东西,甚至连署名都没改干净,如果你需要借用我的代码请保留我的原属名和原作者的版权标志,同时谢谢各位的支持!</div>
             </div>
         </div>
 
@@ -419,7 +418,7 @@
     </div>
 
     <div class="footer">
-        © 2026 Qin_Xiaoyou Lightweight Search Engine. All rights reserved.
+        © 2026 Bing Search Proxy. All rights reserved.
     </div>
 
     <script>
@@ -485,9 +484,10 @@
         });
 
         document.querySelector('.search-button').addEventListener('click', function() {
-            const query = document.querySelector('.search-input').value;
-            if (query.trim()) {
-                alert('Searching for: ' + query);
+            const query = document.querySelector('.search-input').value.trim();
+            if (query) {
+                const bingSearchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                window.location.href = bingSearchUrl;
             }
         });
 
