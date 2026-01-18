@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+    <style>
+        :root {
+            --primary: #4285f4;
+            --secondary: #34a853;
+            --text: #333;
+            --bg: #f5f5f5;
+            --card: #fff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary: #8ab4f8;
+            --secondary: #81c995;
+            --text: #e8eaed;
+            --bg: #202124;
+            --card: #303134;
+            --shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 0.8s ease forwards 0.2s;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--card);
+            border-radius: 24px;
+            padding: 12px 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards 0.4s;
+            transition: var(--transition);
+        }
+
+        .search-box:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 1rem;
+            padding: 0 10px;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards 0.6s;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card);
+            color: var(--text);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 10;
+            transition: var(--transition);
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards 1s;
+        }
+
+        .theme-toggle:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .bg-element {
+            position: fixed;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0.05;
+            z-index: 0;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .copyright {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards 0.8s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-element" style="width: 300px; height: 300px; top: -100px; left: -100px; animation-delay: 0s;"></div>
+    <div class="bg-element" style="width: 250px; height: 250px; bottom: -80px; right: -80px; animation-delay: 3s;"></div>
+    <div class="bg-element" style="width: 200px; height: 200px; top: 20%; left: 10%; animation-delay: 6s;"></div>
+    <div class="bg-element" style="width: 150px; height: 150px; bottom: 15%; right: 15%; animation-delay: 9s;"></div>
+
+    <button class="theme-toggle" id="themeToggle">🌓</button>
+
+    <div class="container">
+        <h1 class="logo">八班人上人Search Engine</h1>
+        
+        <form class="search-box" action="https://www.bing.com/search" method="get" target="_blank">
+            <input type="text" class="search-input" name="q" placeholder="Search with Bing..." required>
+            <button type="submit" class="search-btn">🔍</button>
+        </form>
+        
+        <div class="btn-group">
+            <a href="https://www.douyin.com/?recommend=1" target="_blank" class="btn btn-secondary">TikTok</a>
+        </div>
+        <div class="btn-group">
+            <a href="https://github.com/qinyou-quantum" target="_blank" class="btn btn-secondary">给电教买杯卡布奇诺</a>
+        </div>
+    </div>
+
+    <div class="copyright">
+        &copy; 2026 Qin_Xiaoyou Lightweight Search Engine
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        let isDarkMode = false;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '🌞';
+            isDarkMode = true;
+        }
+
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                themeToggle.textContent = '🌞';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggle.textContent = '🌓';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        document.addEventListener('mousemove', (e) => {
+            const bgElements = document.querySelectorAll('.bg-element');
+            bgElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                const distance = Math.sqrt(x*x + y*y);
+                
+                if (distance < 200) {
+                    const angle = Math.atan2(y, x);
+                    const force = (200 - distance)/200 * 15;
+                    el.style.transform = `translate(${Math.cos(angle)*force}px, ${Math.sin(angle)*force}px)`;
+                } else {
+                    el.style.transform = 'translate(0, 0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
